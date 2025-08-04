@@ -1,6 +1,6 @@
-# Plan for Multi-Region Brain Modeling Pipeline
+# Phase I: Foundational Refactoring and Core Pipeline
 
-This document outlines the plan to extend the QuantaDorsa project to support modeling of different brain regions.
+This document outlines the first phase of implementation for the multi-region brain modeling pipeline. The focus of this phase is to refactor the existing codebase to support multiple brain regions.
 
 ### 1. Generalize the C++ Simulation Core
 
@@ -21,18 +21,3 @@ This document outlines the plan to extend the QuantaDorsa project to support mod
 -   **Update `stat_plots.R`:** Modify the R script to handle the new data format with the region identifier.
 -   **Comparative statistics:** Perform statistical analysis (e.g., ANOVA, t-tests) to compare synaptic dynamics across different regions.
 -   **Generate region-specific and comparative plots:** Create plots like boxplots or violin plots to compare distributions of synaptic weights across regions.
-
-### 4. Automate the Pipeline
-
--   **Create a master script (`run_pipeline.sh`):** Develop a shell script that orchestrates the entire pipeline:
-    1.  Compiles the C++ code.
-    2.  Runs the simulation for each configured brain region.
-    3.  Generates visualizations for each region.
-    4.  Performs statistical analysis.
-    5.  Composes the final videos with FFmpeg.
--   **Parameterize the script:** Allow the user to specify which regions to model via command-line arguments.
-
-### 5. Documentation and Testing
-
--   **Update `README.md`:** Revise the main `README.md` to reflect the new multi-region capabilities.
--   **Add unit tests:** Create tests for the C++ models and Python scripts to ensure correctness.
