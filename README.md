@@ -29,6 +29,7 @@ QuantaDorsa/
 ├── frames/                      # Generated image frames
 ├── videos/                      # Final composed videos
 ├── data/                        # Simulation output CSVs
+├── docs/                        # Project planning and documentation
 ├── README.md
 └── run_pipeline.sh              # Optional orchestration shell script
 ```
@@ -103,6 +104,7 @@ You can optionally combine R plots as overlays or intro/outro sequences.
 
 ## 🧩 Extensibility
 
+- **Multi-region modeling:** The project is designed to be extended for modeling multiple brain regions. See the `docs/plan.md` file for details on the planned architecture.
 - Add new C++ models for different brain regions or neurotransmitter dynamics
 - Enhance Python plots with animations, region overlays, or panning effects
 - Extend R scripts for deeper statistical tests and network visualizations
