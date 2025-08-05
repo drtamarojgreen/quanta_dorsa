@@ -17,12 +17,12 @@ CPP_EXEC="synapse_sim"
 
 PYTHON_DIR="python_visualization"
 PYTHON_SCRIPT="plot_synapse.py"
-FRAMES_SUBDIR="python_frames" # Subdirectory within python_visualization
 
 R_DIR="r_analysis"
 R_SCRIPT="stat_plots.R"
 
 DATA_DIR="data"
+FRAMES_DIR="frames"
 VIDEO_DIR="videos"
 OUTPUT_VIDEO_NAME="synapse_simulation.mp4"
 
@@ -40,7 +40,7 @@ echo
 echo "--- [0/4] Setting up directories ---"
 mkdir -p ${DATA_DIR}
 mkdir -p ${VIDEO_DIR}
-mkdir -p ${PYTHON_DIR}
+mkdir -p ${FRAMES_DIR}
 echo "Directories ensured."
 echo
 
@@ -79,7 +79,7 @@ echo
 
 # --- Step 4: Video Composition ---
 echo "--- [4/4] Composing Video with FFmpeg ---"
-FRAMES_PATH="${PYTHON_DIR}/${FRAMES_SUBDIR}/frame_%04d.png"
+FRAMES_PATH="${FRAMES_DIR}/frame_%04d.png"
 VIDEO_PATH="${VIDEO_DIR}/${OUTPUT_VIDEO_NAME}"
 
 ffmpeg -y -framerate 30 -i ${FRAMES_PATH} \
