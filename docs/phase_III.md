@@ -16,12 +16,12 @@ This document outlines the major features and enhancements planned for future de
   - Output data in a format that facilitates comparison across runs.
 
 - **CMake Build System:**
-  - Replace the simple `g++` command with a `CMakeLists.txt` file to manage dependencies, build configurations (Debug/Release), and improve cross-platform compatibility.
+  - Replace the simple compiler command with a build automation tool to manage dependencies, build configurations (Debug/Release), and improve cross-platform compatibility.
 
 ## 2. Enhanced Visualization (Python)
 
 - **Interactive Plots:**
-  - Transition from static `matplotlib` plots to interactive visualizations using libraries like `Plotly` or `Bokeh`, allowing users to zoom, pan, and inspect data points.
+  - Transition from static plots to interactive visualizations using dedicated libraries, allowing users to zoom, pan, and inspect data points.
 
 - **Multi-dimensional Data Visualization:**
   - Develop plots for network activity, such as raster plots for spike times or animated graph visualizations showing network connectivity and activity flow.
@@ -43,7 +43,7 @@ This document outlines the major features and enhancements planned for future de
 ## 4. Post-Processing & AI Integration
 
 - **Dynamic Video Overlays:**
-  - Enhance the `ffmpeg` pipeline to dynamically overlay statistical plots (e.g., the R-generated correlation plot) or key simulation parameters directly onto the video.
+  - Enhance the video processing pipeline to dynamically overlay statistical plots (e.g., the R-generated correlation plot) or key simulation parameters directly onto the video.
 
 - **AI-Powered Video Smoothing (Frame Interpolation):**
-  - Integrate tools like RIFE (Real-Time Intermediate Flow Estimation) or DAIN (Depth-Aware Video Frame Interpolation) to increase the frame rate and create ultra-smooth slow-motion videos from the simulation output. This can be managed via a Python wrapper or a VapourSynth script.
+  - Integrate frame interpolation tools to increase the frame rate and create ultra-smooth slow-motion videos from the simulation output. This can be managed via a scripting interface.
