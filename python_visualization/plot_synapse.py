@@ -4,7 +4,7 @@ import os
 
 # Configuration
 DATA_FILE = '../data/synapse_data.csv'
-FRAMES_DIR = 'python_frames'
+FRAMES_DIR = '../frames'
 os.makedirs(FRAMES_DIR, exist_ok=True)
 
 def plot_simulation_step(df, step_index):
