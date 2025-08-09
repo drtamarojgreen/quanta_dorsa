@@ -39,4 +39,16 @@ cat(paste("Saved correlation matrix to", output_corr_plot, "\n"))
 # --- Plot 2: Scatter plot of Activity vs. Weight ---
 cat("Generating activity vs. weight scatter plot...\n")
 
-scatter_plot <- ggplot
+scatter_plot <- ggplot(sim_data, aes(x = time, y = synaptic_weight)) +
+  geom_line(color = "steelblue", alpha = 0.8) +
+  geom_point(data = subset(sim_data, activity_product == 1),
+             aes(x = time, y = synaptic_weight),
+             color = "firebrick", size = 2.5, shape = 18) +
+  labs(title = "Synaptic Weight Evolution with Co-activation Events",
+       subtitle = "Red diamonds indicate simultaneous pre- and post-synaptic firing",
+       x = "Time (s)", y = "Synaptic Weight") +
+  theme_minimal(base_size = 14) + ylim(0, 1.1)
+
+ggsave(output_scatter_plot, plot = scatter_plot, width = 12, height = 6, dpi = 150)
+cat(paste("Saved scatter plot to", output_scatter_plot, "\n\n"))
+cat("R analysis finished.\n")

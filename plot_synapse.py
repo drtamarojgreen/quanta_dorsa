@@ -66,9 +66,9 @@ def main():
 
     for i in range(num_frames):
         plot_simulation_step(df, i)
-        if (i + 1) % 50 == 0 or (i + 1) == num_frames:
-            print(f"  ... {i + 1}/{num_frames} frames saved.")
+        print(f"  ... {i + 1}/{num_frames} frames saved.", end='\r')
             
+    print() # Newline after the progress bar finishes
     print(f"\nAll frames saved in '{os.path.join(os.path.dirname(__file__), FRAMES_DIR)}/'")
 
 if __name__ == '__main__':

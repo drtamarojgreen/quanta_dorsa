@@ -40,7 +40,6 @@ echo
 echo "--- [0/4] Setting up directories ---"
 mkdir -p ${DATA_DIR}
 mkdir -p ${VIDEO_DIR}
-mkdir -p ${PYTHON_DIR}
 echo "Directories ensured."
 echo
 
