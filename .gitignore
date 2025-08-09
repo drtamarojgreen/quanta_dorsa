@@ -1,0 +1,13 @@
+# Generated data files
+data/
+videos/
+frames/
+
+# Compiled binaries
+cpp_simulation/synapse_sim
+
+# Python cache
+__pycache__/
+
+# R plots
+r_analysis/*.png
