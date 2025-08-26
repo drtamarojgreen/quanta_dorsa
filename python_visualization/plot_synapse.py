@@ -4,13 +4,13 @@ import os
 
 # Configuration
 DATA_FILE = '../data/synapse_data.csv'
-FRAMES_DIR = '../frames'
-os.makedirs(FRAMES_DIR, exist_ok=True)
+BASE_FRAMES_DIR = '../frames' # Changed from FRAMES_DIR
 
-def plot_simulation_step(df, step_index):
-    """Generates and saves a single frame of the simulation visualization."""
+def plot_simulation_step(df, step_index, region_name, output_dir):
+    """Generates and saves a single frame of the simulation visualization for a specific region."""
     fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})
-    fig.suptitle('Synaptic Plasticity Simulation', fontsize=16)
+    # Updated title to include region
+    fig.suptitle(f'Synaptic Plasticity Simulation - Region: {region_name.title()}', fontsize=16)
 
     current_time = df['time'].iloc[step_index]
     
@@ -47,12 +47,13 @@ def plot_simulation_step(df, step_index):
 
     plt.tight_layout(rect=[0, 0.03, 1, 0.95])
     
-    frame_path = os.path.join(FRAMES_DIR, f'frame_{step_index:04d}.png')
+    # Save to region-specific directory
+    frame_path = os.path.join(output_dir, f'frame_{step_index:04d}.png')
     plt.savefig(frame_path)
     plt.close(fig)
 
 def main():
-    """Main function to generate all frames."""
+    """Main function to read data, loop through regions, and generate all frames."""
     if not os.path.exists(DATA_FILE):
         print(f"Error: Data file not found at {DATA_FILE}")
         print("Please run the C++ simulation first.")
@@ -60,16 +61,34 @@ def main():
 
     print("Reading simulation data...")
     df = pd.read_csv(DATA_FILE)
-    
-    num_frames = len(df)
-    print(f"Generating {num_frames} frames...")
 
-    for i in range(num_frames):
-        plot_simulation_step(df, i)
-        print(f"  ... {i + 1}/{num_frames} frames saved.", end='\r')
-            
-    print() # Newline after the progress bar finishes
-    print(f"\nAll frames saved in '{os.path.join(os.path.dirname(__file__), FRAMES_DIR)}/'")
+    if 'region' not in df.columns:
+        print("Error: 'region' column not found in the data file.")
+        print("The data format is incompatible with multi-region visualization.")
+        return
+
+    regions = df['region'].unique()
+    print(f"Found regions: {', '.join(regions)}")
+
+    for region_name in regions:
+        region_dir = os.path.join(BASE_FRAMES_DIR, region_name)
+        os.makedirs(region_dir, exist_ok=True)
+
+        print(f"\nProcessing region: {region_name.title()}")
+        region_df = df[df['region'] == region_name].copy()
+        region_df.reset_index(drop=True, inplace=True)
+
+        num_frames = len(region_df)
+        print(f"Generating {num_frames} frames for {region_name.title()}...")
+
+        for i in range(num_frames):
+            plot_simulation_step(region_df, i, region_name, region_dir)
+            print(f"  ... {i + 1}/{num_frames} frames saved.", end='\r')
+
+        print() # Newline after the progress bar finishes
+        print(f"All frames for {region_name.title()} saved in '{region_dir}/'")
+
+    print("\nMulti-region visualization complete.")
 
 if __name__ == '__main__':
     main()
