@@ -143,3 +143,72 @@ MIT License
 ## 💡 Acknowledgements
 
 Inspired by integrative neuroscience workflows combining high-performance simulation with modern data visualization and statistics.
+
+---
+
+# Cognitive Modeling Scripts
+
+This repository contains a collection of scripts for cognitive modeling, data analysis, and visualization. The scripts are organized into a standardized, modular pipeline to facilitate reproducibility and maintainability.
+
+## Directory Structure
+
+The scripts are organized into a series of directories based on their function in the data analysis pipeline. Each directory is prefixed with a number to indicate the order of execution.
+
+```
+scripts/
+├── 01_acquisition/
+│   ├── R/
+│   ├── python/
+│   └── shell/
+├── 02_processing/
+│   ├── R/
+│   └── python/
+├── 03_modeling/
+│   ├── R/
+│   └── python/
+├── 04_analysis/
+│   ├── R/
+│   └── python/
+├── 05_visualization/
+│   └── R/
+├── 06_data_loading/
+│   └── R/
+├── 07_querying/
+│   ├── R/
+│   └── shell/
+└── 08_pipelines/
+    ├── R/
+    └── shell/
+```
+
+## Naming Convention
+
+All scripts follow a consistent naming convention to clearly indicate their function and the primary data source or entity they operate on. The format is `<stage_prefix>_<data_source>_<action>.<language_extension>`.
+
+*   **`<stage_prefix>`:** A short prefix to indicate the pipeline stage (e.g., `acq` for acquisition, `proc` for processing, `mod` for modeling).
+*   **`<data_source>`:** The primary data source (e.g., `pubmed`, `clinicaltrials`, `drugsfda`).
+*   **`<action>`:** A verb describing the script's function (e.g., `download`, `clean`, `convert_to_rdf`, `run_model`).
+
+**Example:**
+*   `scripts/01_acquisition/R/acq_pubmed_fetch.R`
+*   `scripts/02_processing/python/proc_drugsfda_convert_to_rdf.py`
+
+## Standard Script Header
+
+Every script file begins with a standardized header block that provides essential metadata about the script, including its title, author, date, description, inputs, outputs, and dependencies.
+
+## Pipelines
+
+The `scripts/08_pipelines` directory contains the main orchestration scripts for running the various data analysis pipelines. These scripts are designed to be run from the root of the repository and will execute the individual scripts in the correct order.
+
+To run the main R-based pharmaceutical data pipeline, execute the following command:
+
+```bash
+Rscript scripts/08_pipelines/R/pipe_pharma_main.R
+```
+
+To run the R and Python BRFSS data analysis pipelines, execute:
+
+```bash
+bash scripts/08_pipelines/shell/pipe_run_r_python.sh
+```
